@@ -1,0 +1,19 @@
+@import "./styles/variables.scss";
+// $max_width:1200px;
+// $bg_color:rgb(226, 222, 222);
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    width: min($max_width,100%);
+    background-color: $bg_color;
+    margin-inline: auto;
+}
+
+// @media only screen and (max-width:1000px){
+
+// }

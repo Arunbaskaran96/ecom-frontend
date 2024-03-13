@@ -1,0 +1,24 @@
+.image{
+    height: 350px;
+    width: 100%;
+}
+.slideContainer{
+    position: relative;
+    .content{
+        position: absolute;
+        font-size: 30px;
+        color: white;
+        top: 150px;
+        left: 100px;
+    }
+}
+
+
+@media only screen and (max-width:620px){
+    .slideContainer{
+        .content{
+            left: 20px;
+            font-size: 20px;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container{
+    @include flexContainer;
+    justify-content: space-between;
+    padding:15px;
+    background-color: white;
+    .brand{
+        font-size: 25px;
+        font-weight: 800;
+    }
+    .menuIcon{
+        display: none;
+    }
+    .nav{
+        @include flexContainer; 
+        gap: 20px;
+        a{
+            font-size: $font-size-def;
+            cursor: pointer;
+        }
+    }
+    .inputContainer{
+        @include flexContainer; 
+        background-color: $bg_color;
+        padding: 0px 10px;
+        flex-wrap: wrap;
+        width: 25%;
+        height: 35px;
+        overflow-x: hidden;
+        justify-content: space-between;
+        input{
+            width: 80%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            outline: none
+        }
+    }
+    .orders{
+        @include flexContainer; 
+        gap: 20px;
+    }
+    .icon{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 50em){
+    .container .menuIcon{
+        display: block;
+
+        .menuicon{
+            cursor: pointer;
+            padding: 3px 5px;
+            transition: all 0.5s;
+            &:hover{
+                background-color: $hover_color;
+
+            }
+        }
+
+    }
+    a{
+        display: none;
+    }
+    .container .inputContainer{
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 30em){
+    .container .brand{
+        display: none;
+    }
+
+}
+
