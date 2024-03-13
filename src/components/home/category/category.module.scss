@@ -1,0 +1,24 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+.container{
+    margin-top: 25px;
+    @include flexContainer;
+    justify-content: space-between;
+    p{
+        font-size: 20px;
+    }
+}
+
+.category{
+    border: 1px solid black;
+    cursor: pointer;
+    text-align: center;
+    height: 110px;
+    width: 200px;
+    padding-top: 10px;
+    transition: all 0.5s;
+    &:hover{
+        background-color: $hover_color;
+        color: white;
+    }
+}

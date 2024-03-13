@@ -1,0 +1,81 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+
+.container{
+    margin-top: 50px;
+    height: 250px;
+    padding: 0px 20px;
+    background-color: black;
+    justify-content: space-between;
+    @include flexContainer;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.brandlogo{
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+}
+.playstore{
+    width: 100px;
+    height: 30px;
+}
+.appstore{
+    width: 100px;
+    color: white;
+    height: 50px;
+}
+.iconContainer{
+    @include flexContainer;
+    border: 1px solid white;
+    padding: 2px 5px;
+    gap: 15px;
+}
+.supportContainer{
+    @include flexContainer;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    p{
+        font-size: $font-size-def;
+    }
+
+}
+.accountContainer{
+    gap: 5px;
+    p{
+        font-size: $font-size-def;
+        cursor: pointer;
+    }
+}
+
+
+@media only screen and (max-width:900px){
+
+    .supportContainer{
+        p{
+            font-size: 15px;
+        }
+    }
+    .accountContainer{
+        p{
+            font-size: 15px;
+        }
+    }
+    .brandlogo{
+        height: 100px;
+        width: 100px;
+    }
+}
+
+
+
+
+@media only screen and (max-width:650px){
+    .supportContainer,.accountContainer{
+        display: none;
+    }
+
+}
