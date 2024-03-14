@@ -1,6 +1,5 @@
 @import "./styles/variables.scss";
-// $max_width:1200px;
-// $bg_color:rgb(226, 222, 222);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 *{
     margin: 0px;
@@ -12,8 +11,15 @@ body{
     width: min($max_width,100%);
     background-color: $bg_color;
     margin-inline: auto;
+    font-family: roboto;
 }
 
-// @media only screen and (max-width:1000px){
+a{
+    text-decoration: none;
+    color: white;
+}
 
-// }
+@media only screen and (min-width:600px){
+    $font-size-def:15px;
+
+}

@@ -50,6 +50,12 @@
         cursor: pointer;
     }
 }
+.storeContainer>div{
+    font-size: $font-size-def;
+    @include flexContainer;
+    flex-direction: column;
+    gap: 8px;
+}
 
 
 @media only screen and (max-width:900px){

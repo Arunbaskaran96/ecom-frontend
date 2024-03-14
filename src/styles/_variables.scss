@@ -1,9 +1,16 @@
+
+
 $max_width:1200px;
 $bg_color:rgb(243, 243, 243);
-$font-size-def:20px;
+$bg_red:red;
+$bg_teal:teal;
+
 $hover_color:#DB4444;
 
 
-@media only screen and (min-width:600px){
-    $font-size-def:10px;
-}
+$font-size-sm:16px;
+$font-size-def:20px;
+$font-size-lg:24px;
+$font-size-xl:26px;
+
+
