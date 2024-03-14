@@ -1,0 +1,62 @@
+@import "../../../styles/mixins.scss";
+
+.bottomLeft h3,.reviewContainer{
+    @include flexContainer;
+}
+.reviewContainer{
+    gap: 8px;
+}
+.reviewContainer span{
+    color: gold;
+    font-weight: 500;
+}
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    .bottomLeft{
+        padding: 0px 10px;
+    }
+    padding: 10px;
+}
+.container{
+    background-color: white;
+}
+.image{
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.iconContainer{
+    aspect-ratio: 1/1;
+    border: 1px solid rgb(207, 207, 207);
+    padding: 0px 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width:600px){
+    .container{
+        flex-direction: row;
+        width: 90%;
+    }
+    .image{
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+    }
+    .bottom{
+        gap: 25px;
+        align-items: center;
+    }
+    .iconContainer .icon{
+       font-size: 40px;
+    }
+}

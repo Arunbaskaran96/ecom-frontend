@@ -46,7 +46,9 @@ function Login() {
               />
             </div>
             <div className={classes.btnContainer}>
-              <button className={classes.btn}>Login</button>
+              <Link to="/home">
+                <button className={classes.btn}>Login</button>
+              </Link>
             </div>
             <div className={classes.forgot}>
               <p>Forgot Password?</p>
