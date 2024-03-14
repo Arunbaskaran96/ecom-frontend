@@ -9,7 +9,7 @@ function Home() {
     <div>
       <XSwipper />
       <div>
-        <Link to="/products">
+        <Link to="/product">
           <button>View Products</button>
         </Link>
       </div>
