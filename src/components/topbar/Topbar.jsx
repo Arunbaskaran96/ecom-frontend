@@ -5,6 +5,7 @@ import classes from "./topbar.module.scss";
 import { CiSearch } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 function Topbar() {
   const [isSideBarActive, setIsSideBarActive] = useState(false);
@@ -26,10 +27,14 @@ function Topbar() {
         <div className={classes.brand}>ECom</div>
         <div className={classes.navigation}>
           <nav className={classes.nav}>
-            <a>Home</a>
-            <a>Contact</a>
-            <a>About</a>
-            <a>Signup</a>
+            <Link to="/">
+              <p>Home</p>
+            </Link>
+            <Link to="/products">
+              <p>Products</p>
+            </Link>
+            <p>About</p>
+            <p>Signup</p>
           </nav>
         </div>
         <div className={classes.inputContainer}>

@@ -1,0 +1,180 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container{
+    margin-top: 30px;
+    padding: 0px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    .left{
+        width: 70%;
+        padding: 0px 20px;
+    }
+    .right{
+        width: 30%;
+        margin-top: 43px;
+    }
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+thead{
+    background-color: white;
+}
+
+.priceContainer{
+    padding: 15px 10px;
+    background-color: white;
+    @include flexContainer;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.priceRight{
+    .subTotal{
+        color: green;
+        font-weight: 500;
+    }
+    .shipping{
+        color: $color_blue;
+        font-weight: 500;
+    }
+    .tax{
+        color: red;
+        font-weight: 500;
+    }
+}
+
+.priceLeft,.priceRight{
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.totalContainer{
+    margin-top: 10px;
+    background-color: white;
+    @include flexContainer;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+.cardImages div{
+    @include flexContainer;
+    justify-content: space-around;
+    background-color: white;
+    padding: 5px 0px;
+
+}
+
+.emptyCart{
+    h4{
+        font-size: 20px
+    }
+    @include flexContainer;
+    height: 20vh;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    button{
+        margin-top: 15px;
+        border: none;
+        height: 30px;
+        width: 200px;
+        background-color: green;
+        color: white;
+        transition: all 0.5s;
+        &:hover{
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+}
+
+thead th{
+    padding: 15px 5px;
+    text-align: start;
+}
+.cardImage{
+    height: 30px;
+    aspect-ratio: 1/1;
+
+}
+
+.btnContainer{
+    margin-top: 10px;
+    button{
+        width: 100%;
+        height: 35px;
+        border: none;
+        background-color: green;
+        color: white;
+        font-weight: 900;
+        font-size: 16px;
+        letter-spacing: 2px;
+        transition:  all 0.5s;
+        &:hover{
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+}
+
+.quantityContainer{
+    @include flexContainer;
+    gap: 10px;
+    .quantityBtn{
+        padding: 7px 9px;
+        cursor: pointer;
+        background-color: $hover_color;
+        border: none;
+        color: white;
+        font-size: 16px;
+        transition: all 0.5s;
+        &:hover{
+            opacity: 0.8;
+        }
+        &:disabled{
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    }
+}
+
+tbody {
+    tr{
+        border: 1px solid rgb(212, 211, 211);
+    }
+
+    margin-top: 10px;
+    .prodCart{
+        @include flexContainer;
+        gap: 15px;
+    }
+    background-color: white;
+}
+
+.image{
+    height: 60px;
+    aspect-ratio: 1/1;
+}
+
+
+
+@media only screen and (max-width:800px){
+    .container{
+        flex-direction: column;
+        .left{
+            width: 100%;
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding: 0px 20px;
+        }
+    }
+}

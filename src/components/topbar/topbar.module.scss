@@ -17,6 +17,9 @@
         @include flexContainer; 
         gap: 20px;
         a{
+            color:black;
+        }
+        p{
             font-size: $font-size-def;
             cursor: pointer;
         }
@@ -62,7 +65,7 @@
         }
 
     }
-    .nav a{
+    .nav p{
         display: none;
     }
     .container .inputContainer{
