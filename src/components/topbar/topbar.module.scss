@@ -24,6 +24,21 @@
             cursor: pointer;
         }
     }
+
+    .heartIconContainer,.cartIconContainer{
+        position: relative;
+        span{
+            position: absolute;
+            top: -5px;
+            right:-7px;
+            background-color: red;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+            text-align: center;
+            color: white;
+        }
+    }
     .inputContainer{
         @include flexContainer; 
         background-color: $bg_color;

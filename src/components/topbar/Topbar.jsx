@@ -6,9 +6,12 @@ import { CiSearch } from "react-icons/ci";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { userSelector } from "../../redux/slices/userSlice";
 
 function Topbar() {
   const [isSideBarActive, setIsSideBarActive] = useState(false);
+  const { cartCount } = userSelector();
+
   return (
     <>
       <header className={classes.container}>
@@ -42,8 +45,20 @@ function Topbar() {
           <CiSearch size={20} />
         </div>
         <div className={classes.orders}>
-          <CiHeart size={30} className={classes.icon} />
-          <CiShoppingCart size={30} className={classes.icon} />
+          <div className={classes.heartIconContainer}>
+            <CiHeart size={33} className={classes.icon} />
+            <span>1</span>
+          </div>
+          <Link to="/cart">
+            <div className={classes.cartIconContainer}>
+              <CiShoppingCart
+                color="black"
+                size={33}
+                className={classes.icon}
+              />
+              {cartCount && <span>{cartCount}</span>}
+            </div>
+          </Link>
         </div>
       </header>
       <hr />

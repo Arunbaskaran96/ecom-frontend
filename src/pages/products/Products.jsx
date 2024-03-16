@@ -1,140 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./products.module.scss";
 import FilterProduct from "../../components/product/filterProduct/FilterProduct";
 import { MdOutlineCancel } from "react-icons/md";
 import ProductList from "../../components/product/productList/ProductList";
 import { FaFilter } from "react-icons/fa";
-import { Drawer } from "@mui/material";
+import { Alert, CircularProgress, Drawer, Snackbar } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  productsSelector,
+} from "../../redux/slices/productSlice";
+import Loading from "../../components/loading/Loading";
+import {
+  addToCart,
+  addToCartRequest,
+  userSelector,
+} from "../../redux/slices/userSlice";
 
 function Products() {
+  const prodDispatch = useDispatch();
+  const userDispatch = useDispatch();
+  const { user } = userSelector();
   const [priceRange, setPriceRange] = useState([0, 100000]);
-  const products = [
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-    {
-      images: [
-        {
-          publiId: "as",
-          url: "https://m.media-amazon.com/images/I/411iWoJEJjL._AC_SY200_.jpg",
-        },
-      ],
-      name: "IQZ00 Z9",
-      description:
-        "Fully Loaded Performance - Powered by MediaTek Dimensity 7200 built on flagship grade TSMC 2nd Gen 4nm process with a clock speed of 2.8GHz,Fully Loaded Camera - Experience Impressive camera shots with 50 MP Sony IMX882 OIS camera, 4K video recording with OIS, Super Night Mode, 2x Portrait Zoom, 50 MP UHD Mode.",
-      price: "19999",
-      ratings: 5,
-    },
-  ];
+  const { result, loading, error } = productsSelector();
+
+  const [toastOpen, setToastOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setToastOpen(false);
+  };
+
+  const addtohandler = (prod) => {
+    const formData = {
+      userId: user.user._id,
+      data: {
+        subTotal: prod.price,
+        quantity: 1,
+        productId: prod._id,
+      },
+    };
+    userDispatch(
+      addToCart({
+        subTotal: prod.price,
+        quantity: 1,
+        productId: prod._id,
+      })
+    );
+    userDispatch(addToCartRequest(formData));
+
+    setToastOpen(true);
+  };
+
+  useEffect(() => {
+    prodDispatch(fetchProducts());
+  }, []);
+
   const handlePriceChange = (event, newValue) => {
     setPriceRange(newValue);
   };
-  const [open, setOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+    setDrawerOpen(newOpen);
   };
+
+  if (loading) {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <div className={classes.container}>
       <div onClick={toggleDrawer(true)} className={classes.filterIcon}>
@@ -160,15 +99,21 @@ function Products() {
           <p className={classes.clr}>Clear all Filters</p>
         </div>
         <div className={classes.productsContainer}>
-          {products &&
-            products.map((prod) => {
-              return <ProductList prod={prod} />;
+          {result &&
+            result.products.map((prod) => {
+              return (
+                <ProductList
+                  key={prod._id}
+                  addtohandler={addtohandler}
+                  prod={prod}
+                />
+              );
             })}
         </div>
       </div>
       <Drawer
         PaperProps={{ sx: { width: "70%" } }}
-        open={open}
+        open={drawerOpen}
         onClose={toggleDrawer(false)}
       >
         <div className={classes.mobileDrawer}>
@@ -178,6 +123,22 @@ function Products() {
           />
         </div>
       </Drawer>
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message="Added to the cart"
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Added to the cart
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

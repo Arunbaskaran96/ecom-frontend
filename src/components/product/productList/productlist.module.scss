@@ -3,16 +3,43 @@
 .bottomLeft h3,.reviewContainer{
     @include flexContainer;
 }
+
+.link{
+    color: black;
+}
+.eyeIconContainer{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px;
+    text-align: center;
+    border: 1px solid rgb(216, 216, 216);
+}
 .reviewContainer{
     gap: 8px;
 }
 .reviewContainer span{
-    color: gold;
-    font-weight: 500;
+    font-weight: 300;
+}
+.imgContainer{
+    text-align: center;
+    border-bottom: 1px solid rgb(219, 215, 215);
+    position: relative;
+}
+.heartIcon{
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid rgb(228, 227, 227);
 }
 .bottom{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
     .bottomLeft{
         padding: 0px 10px;
     }
@@ -20,10 +47,16 @@
 }
 .container{
     background-color: white;
+    border-radius: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover{
+        transform: translateY(-10px);
+    }
 }
 .image{
-    max-width: 200px;
-    max-height: 200px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
 }
 
@@ -35,11 +68,66 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.prodName{
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .container{
     display: flex;
     flex-direction: column;
+}
+
+.btnContainer{
+    width: 100%;
+    .btn{
+        width: 100%;
+        height: 33px;
+        cursor: pointer;
+        background-color: black;
+        border: none;
+        color: white;
+        letter-spacing: 1px;
+        font-size: 15px;
+        transition: all 0.5s;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+}
+
+.quantityContainer{
+    display: flex;
+    width: 100%;
+    height: 33px;
+    background-color: black;
+    justify-content:space-between;
+    align-items: center;
+    color: white;
+    text-align: center;
+    button{
+        background-color: black;
+        width: 25%;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+        height: 100%;
+        &:disabled{
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+    .subBtn{
+        border-bottom-left-radius: 10px;
+
+    }
 }
 
 @media only screen and (max-width:600px){
