@@ -30,6 +30,7 @@ import {
   grandTotal,
   shippingCharges,
 } from "../../utils/calculateTax";
+import { BASE_URL } from "../../config";
 
 function Cart() {
   const cartDispatch = useDispatch();
@@ -91,6 +92,26 @@ function Cart() {
     cartDispatch(removeCart(cart));
     cartDispatch(removeFromCart(formData));
     userDispatch(removeUserCart(cart._id));
+  };
+
+  const handleCheckout = async () => {
+    const response = await fetch(`${BASE_URL}/create-checkout-session`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user.user._id,
+        cart: cart.cartItems,
+        total: total,
+      }),
+    });
+    const result = await response.json();
+
+    if (result.url) {
+      console.log(result.url);
+      window.location.href = result.url;
+    }
   };
 
   return (
@@ -186,7 +207,7 @@ function Cart() {
               </div>
             </div>
             <div className={classes.btnContainer}>
-              <button>Checkout</button>
+              <button onClick={handleCheckout}>Checkout</button>
               <div className={classes.cardImages}>
                 <div>
                   <img

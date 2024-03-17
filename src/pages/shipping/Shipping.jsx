@@ -3,6 +3,7 @@ import classes from "./shipping.module.scss";
 import { userSelector } from "../../redux/slices/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { addressValidator } from "../../utils/formValidators/addressValidator";
+import { cartSelector } from "../../redux/slices/cartSlice";
 
 function Shipping() {
   const { user } = userSelector();
@@ -10,6 +11,7 @@ function Shipping() {
   const [errors, setErrors] = useState({});
   const { setItem, getItem } = useLocalStorage("address");
   const address = getItem();
+  const { cart } = cartSelector();
 
   const [formData, setFormData] = useState({
     name: user.user.name,
