@@ -114,6 +114,7 @@ function Cart() {
     }
   };
 
+  console.log("sdasd");
   return (
     <div>
       {cart?.cartItems?.length > 0 ? (
