@@ -208,7 +208,9 @@ function Cart() {
               </div>
             </div>
             <div className={classes.btnContainer}>
-              <button onClick={handleCheckout}>Checkout</button>
+              <Link to="/shipping">
+                <button>Checkout</button>
+              </Link>
               <div className={classes.cardImages}>
                 <div>
                   <img

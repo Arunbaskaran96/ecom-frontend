@@ -11,6 +11,8 @@ import ViewProduct from "./pages/viewproduct/ViewProduct";
 import Cart from "./pages/cart/Cart";
 import About from "./pages/about/About";
 import Shipping from "./pages/shipping/Shipping";
+import Orders from "./pages/orders/Orders";
+import OrderView from "./pages/orderview/OrderView";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
       <Topbar />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products" element={<Products />} />
@@ -25,6 +28,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/orderview/:id" element={<OrderView />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -7,16 +7,16 @@ export const addressValidator = (formData, setErrors) => {
   if (!formData.email) {
     error.email = "Email is required";
   }
-  if (!formData.mobile) {
+  if (!formData.phoneNo) {
     error.mobile = "Mobile is required";
   }
-  if (!formData.door) {
+  if (!formData.doorNo) {
     error.door = "Door No is required";
   }
   if (!formData.city) {
     error.city = "City is required";
   }
-  if (!formData.pincode) {
+  if (!formData.pinCode) {
     error.pincode = "Pincode is required";
   }
   if (!formData.street) {

@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import classes from "./shipping.module.scss";
-import { userSelector } from "../../redux/slices/userSlice";
+import { removeCartCount, userSelector } from "../../redux/slices/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { addressValidator } from "../../utils/formValidators/addressValidator";
 import { cartSelector } from "../../redux/slices/cartSlice";
+import {
+  calculateTax,
+  grandTotal,
+  shippingCharges,
+} from "../../utils/calculateTax";
+import { BASE_URL } from "../../config";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Shipping() {
   const { user } = userSelector();
@@ -11,16 +19,20 @@ function Shipping() {
   const [errors, setErrors] = useState({});
   const { setItem, getItem } = useLocalStorage("address");
   const address = getItem();
-  const { cart } = cartSelector();
+  const { cart, grandSubTotal } = cartSelector();
+  const { getItem: getToken } = useLocalStorage("token");
+  const token = getToken();
+  const navigate = useNavigate();
+  const userDispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     name: user.user.name,
     email: user.user.email,
-    mobile: user.user.mobile,
+    phoneNo: user.user.mobile,
     city: "",
     street: "",
-    pincode: "",
-    door: "",
+    pinCode: "",
+    doorNo: "",
   });
 
   useEffect(() => {
@@ -37,12 +49,47 @@ function Shipping() {
     setChecked(!checked);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (addressValidator(formData, setErrors)) {
+      const taxPrice = calculateTax(grandSubTotal);
+      const shipping = shippingCharges(grandSubTotal);
+      const total = grandTotal(grandSubTotal, shipping, taxPrice);
+      const cartlist = cart.cartItems.map((item) => {
+        const { quantity, subTotal, productId } = item;
+        return {
+          quantity,
+          price: subTotal,
+          image: productId.images[0].url,
+          name: productId.name,
+          product: productId._id,
+        };
+      });
+      const data = {
+        shippingInfo: formData,
+        orderItems: cartlist,
+        userId: user.user._id,
+        subTotal: grandSubTotal,
+        taxPrice,
+        shippingPrice: shipping,
+        totalPrice: total,
+      };
+
       if (checked) {
         setItem(formData);
-      } else {
+      }
+      const response = await fetch(`${BASE_URL}/addOrder`, {
+        method: "POST",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (result.success) {
+        navigate("/orders");
+        userDispatch(removeCartCount());
       }
     }
   };
@@ -84,9 +131,9 @@ function Shipping() {
                 <label className={classes.label}>Mobile</label>
                 <div className={classes.inputContainer}>
                   <input
-                    value={formData.mobile}
+                    value={formData.phoneNo}
                     type="number"
-                    id="mobile"
+                    id="phoneNo"
                     onChange={changeHandler}
                   />
                   <br />
@@ -99,9 +146,9 @@ function Shipping() {
                 <label className={classes.label}>Door No</label>
                 <div className={classes.inputContainer}>
                   <input
-                    value={formData.door}
+                    value={formData.doorNo}
                     type="text"
-                    id="door"
+                    id="doorNo"
                     onChange={changeHandler}
                   />
                   <br />
@@ -146,9 +193,9 @@ function Shipping() {
                 <label className={classes.label}>Pincode</label>
                 <div className={classes.inputContainer}>
                   <input
-                    value={formData.pincode}
+                    value={formData.pinCode}
                     type="number"
-                    id="pincode"
+                    id="pinCode"
                     onChange={changeHandler}
                   />
                   <br />
